@@ -1,0 +1,23 @@
+{include file="header.html" title="Resource Site"}
+         <section>
+       {section name=item loop=$res}
+            <article class="res-item">
+                <header>
+                    <h1 class="res-download" title="download {$res[item].name}">
+                        <a href="d.php?id={$res[item].id}" target="_blank">{$res[item].name}</a>
+                    </h1>
+                </header>
+                <p>{$res[item].desc}</p>
+                <footer>
+                    <p class="res-tags">
+                        {foreach $res[item].tags as $tagitem}  
+                            <span>  
+                                <a href="?{if $search != ''}s={$search}&{/if}{if $type != ''}t={$type}&{/if}k={$tagitem}">{$tagitem}</a>, 
+                            </span>  
+                        {/foreach}  
+                    </p>
+                </footer>
+            </article>
+        {/section}
+        </section>
+{include file="footer.html"}

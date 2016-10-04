@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>{$title} - {$desc}</title>
+        <mete charset="utf-8" />
+        <link href="./css/view.css" rel="stylesheet" />
+        <script src="./js/do.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <header>
+            <div class="head-logo">
+                <h1>Resource Site</h1>
+            </div>
+            <div class="head-search">
+                <form action="#" method="get">
+                    <input type="search" name="s" id="search" value="{$search}"/>
+                    <input type="submit" value="search" />
+                </form>
+            </div>
+        </header>
+        <nav>
+            <ul class="type-list">
+                <li class="type-item {if $type == ''}type-curr{/if}">
+                    <a href="?{if $type != ''}s={$search}&{/if}{if $tag != ''}k={$tag}&{/if}">News</a></li>
+                {section name=i loop=$typelist}
+                <li class="type-item {if $type == $typelist[i]}type-curr{/if}">
+                    <a href="?{if $type != ''}s={$search}&{/if}{if $tag != ''}k={$tag}&{/if}t={$typelist[i]}">{$typelist[i]}</a>
+                </li>
+                {/section}
+            </ul>
+        </nav>
