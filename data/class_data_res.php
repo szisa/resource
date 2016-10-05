@@ -105,13 +105,14 @@ class isa_res_info
         $where = '1 = 1 ';
         if(isset($query["search"]))
         {
-            $where .= "AND `name` like '%{$query["search"]}%' or `desc` like '%{$query["search"]}%' ";
+            $where .= "AND (`name` like '%{$query["search"]}%' or `desc` like '%{$query["search"]}%' ";
             if(!isset($query["tags"])) $where .= " or `tags` like '%{$query["search"]}%'";
+            $where .= ")";
         }
 
         if(isset($query["tags"]))
         {
-            $where .= "AND ',' + `tags` + ',' like '%,{$query["tags"]},%'";
+            $where .= "AND CONCAT(CONCAT(',',`tags`),',') like '%,{$query["tags"]},%'";
         }
 
         if(isset($query["subject"]))
