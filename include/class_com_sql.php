@@ -10,7 +10,7 @@ class cSql
 		$this->db = new \mysqli($localhost, $user, $password, $database);
 		if ($this->db->connect_errno) {
 			$error = "Failed to connect to MySQL: (" . $this->db->connect_errno . ") " . $this->db->connect_error;
-			throw new Exception($error);
+			throw new \Exception($error);
 		}
 		$this->query("set character set 'utf8';");
 		$this->query("set names utf8;");
