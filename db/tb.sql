@@ -32,7 +32,32 @@ CREATE TABLE `isa_res_type` (
 
 DROP TABLE IF EXISTS `isa_res_base`;
 CREATE TABLE `isa_res_base` (
-  `key`      VARCHAR(100)  NOT NULL        COMMENT '网站基本信息键',
-  `value`    VARCHAR(100)  NOT NULL        COMMENT '网站基本信息值',
+  `key`      VARCHAR(50)   NOT NULL        COMMENT '网站基本信息键',
+  `value`    VARCHAR(200)  NOT NULL        COMMENT '网站基本信息值',
+  `desc`    VARCHAR(200)   NOT NULL        COMMENT '网站基本信息描述',
   `valid`    BIT           DEFAULT 1       COMMENT '是否有效',
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1;
+
+INSERT INTO `isa_res_base` (`key`, `value`, `desc`)
+VALUES  ('adminUser', 'admin', '管理员账号', 1);
+INSERT INTO `isa_res_base` (`key`, `value`, `desc`)
+VALUES  ('adminPwd', '112358', '管理员密码', 1);
+
+-- 创建保存基本配置存储过程
+DELIMITER //
+CREATE PROCEDURE SetBase (
+  IN KEYNAME VARCHAR(50) charset utf8,
+  IN KEYVALUE VARCHAR(200) charset utf8
+)
+  BEGIN
+    BEGIN
+      IF EXISTS(SELECT * FROM `isa_res_base` WHERE `key` = KEYNAME) THEN
+        UPDATE `isa_res_base` SET `value` = KEYVALUE, `valid` = 1
+        WHERE `key` = KEYNAME;
+      ELSE
+        INSERT INTO `isa_res_base` (`key`, `value`, `valid`)
+        VALUES(KEYNAME, KEYVALUE, 1);
+      END IF;
+    END;
+  END//
+DELIMITER ;

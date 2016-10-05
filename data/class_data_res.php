@@ -138,7 +138,8 @@ class isa_res_info
     {
         $data = cArray($this->_data);
         $data->del("id");
-        return $data.safesql();
+        $data->del("createdate");
+        return $data.sqlsafe();
     }
 
     protected function getInsert()
@@ -147,6 +148,6 @@ class isa_res_info
         $data->del("id");
         $data->set("createdate", "now()");
         $data->set("tags", ",".trim($this->_data["tags"], " ,").",");
-        return $data.safesql();
+        return $data.sqlsafe();
     }
 }

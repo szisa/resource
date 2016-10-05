@@ -1,6 +1,8 @@
 <?php
 namespace com;
 
+require_once("class_com_fn.php");
+
 class cArray
 {
     private $arr;
@@ -44,11 +46,11 @@ class cArray
         return count;
     }
         
-    function safesql()
+    function sqlsafe()
     {
         $count = 0;
         foreach ($this->arr as $i => $value) {
-            $this->arr[$i] = $this->format($this->arr[$i]);
+            $this->arr[$i] = cfun::sqlsafe($this->arr[$i]);
         }
         return $this->arr;
     }

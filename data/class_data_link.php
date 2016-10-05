@@ -110,13 +110,13 @@ class isa_res_link
     {
         $data = cArray($this->_data);
         $data->del("id");
-        return $data.safesql();
+        return $data.sqlsafe();
     }
 
     protected function getInsert()
     {
         $data = cArray($this->_data);
         $data->del("id");
-        return $data.safesql();
+        return $data.sqlsafe();
     }
 }
