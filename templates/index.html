@@ -1,10 +1,38 @@
-{include file="header.html" title="Resource Site"}
-         <section>
-       {section name=item loop=$res}
+{include file="header.html" title="Resource Site" request="get"}
+        <header>
+            <div class="head-logo">
+                <h1><a href="{LOCALHOST}">Resource Site</a></h1>
+            </div>
+            <div class="head-search">
+                <input type="search" name="s" id="search" value="{$search}"/>
+                <input type="submit" value="search" />
+            </div>
+            {if $isAdmin}
+            <div>
+                <a href="post.php" id="admin-post">Add a new resource</a>
+            </div>
+            {/if}
+        </header>
+        <nav>
+            <ul class="type-list">
+                <li class="type-item {if $type == ''}type-curr{/if}">
+                    <a href="?{if $search != ''}s={$search}&{/if}{if $tag != ''}k={$tag}&{/if}">News</a></li>
+                {foreach $typelist as $name => $id}  
+                <li class="type-item {if $type == $name}type-curr{/if}">
+                    <a href="?{if $search != ''}s={$search}&{/if}{if $tag != ''}k={$tag}&{/if}t={$name}">{$name}</a>
+                </li>
+                {/foreach}
+            </ul>
+        </nav>
+        <section>
+            {section name=item loop=$res}
             <article class="res-item">
                 <header>
                     <h1 class="res-download" title="download {$res[item].name}">
                         <a href="download.php?id={$res[item].id}" target="_blank">{$res[item].name}</a>
+                        {if $isAdmin}
+                        <a href="post.php?id={$res[item].id}">edit</a>
+                        {/if}
                     </h1>
                 </header>
                 <p>{$res[item].desc}</p>
@@ -18,6 +46,10 @@
                     </p>
                 </footer>
             </article>
-        {/section}
+            {/section}
+            <article class="form-item">
+                <input type="hidden" name="t" value="{$type}" />
+                <input type="hidden" name="k" value="{$tag}" />
+            </article>            
         </section>
 {include file="footer.html"}

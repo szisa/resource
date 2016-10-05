@@ -33,7 +33,7 @@ class isa_res_link
     {
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-        $result = $db->insert($this->_table, $this->get());
+        $result = $db->insert($this->_table, $this->getInsert());
         return $result;
     }
 
@@ -60,7 +60,7 @@ class isa_res_link
         {
             if(isset($data[$k])) 
             {
-                $this->_data[$k] = $v;
+                $this->_data[$k] = $data[$k];
             }    
         }
 
@@ -69,7 +69,7 @@ class isa_res_link
 
     function get()
     {
-        return $data;
+        return $this->_data;
     }
 
     protected function toData($result)
@@ -108,15 +108,15 @@ class isa_res_link
 
     protected function getUpdate()
     {
-        $data = cArray($this->_data);
+        $data = new cArray($this->_data);
         $data->del("id");
-        return $data.sqlsafe();
+        return $data->sqlsafe();
     }
 
     protected function getInsert()
     {
-        $data = cArray($this->_data);
+        $data = new cArray($this->_data);
         $data->del("id");
-        return $data.sqlsafe();
+        return $data->sqlsafe();
     }
 }

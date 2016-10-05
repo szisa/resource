@@ -35,11 +35,11 @@ class isa_res_info
     {
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-        $result = $db->insert($this->_table, $this->get());
+        $result = $db->insert($this->_table, $this->getInsert());
         return $result;
     }
 
-    function update($data)
+    function update()
     {
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -62,7 +62,7 @@ class isa_res_info
         {
             if(isset($data[$k])) 
             {
-                $this->_data[$k] = $v;
+                $this->_data[$k] = $data[$k];
                 if("tags" == $k)
                 {
                     $tagList = $this->getTags($this->_data["tags"]);
@@ -80,7 +80,7 @@ class isa_res_info
 
     function get()
     {
-        return $data;
+        return $this->_data;
     }
 
     protected function toData($result)
@@ -136,18 +136,18 @@ class isa_res_info
 
     protected function getUpdate()
     {
-        $data = cArray($this->_data);
+        $data = new cArray($this->_data);
         $data->del("id");
         $data->del("createdate");
-        return $data.sqlsafe();
+        return $data->sqlsafe();
     }
 
     protected function getInsert()
     {
-        $data = cArray($this->_data);
+        $data = new cArray($this->_data);
         $data->del("id");
         $data->set("createdate", "now()");
         $data->set("tags", ",".trim($this->_data["tags"], " ,").",");
-        return $data.sqlsafe();
+        return $data->sqlsafe();
     }
 }

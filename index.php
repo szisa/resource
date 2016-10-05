@@ -3,8 +3,10 @@
 require 'libs/Smarty.class.php';
 require_once('config.php');
 require_once('data/class_data_res.php');
+require_once('include/class_com_fn.php');
 
 use data\isa_res_info as isa_res_info;
+use com\cfun as cfun;
 $smarty = new Smarty;
 $res = new isa_res_info;
 
@@ -15,6 +17,7 @@ $smarty->caching = false;
 $search = "";
 $tag = "";
 $type = "";
+$isAdmin = cfun::verifysess();
 
 $query = array();
 if(isset($_GET["s"]) && $_GET["s"] != "")
@@ -43,4 +46,5 @@ $smarty->assign("type", $type);
 $smarty->assign("desc", "a resource site", true);
 $smarty->assign("typelist", $TYPELIST);
 $smarty->assign("res", $resList);
+$smarty->assign("isAdmin", $isAdmin);
 $smarty->display('index.html');

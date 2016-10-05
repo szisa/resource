@@ -1,0 +1,46 @@
+{include file="header.html" request="post"}
+    <section>
+        <article class="res-info">
+            <p>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" class="text" maxlength="100" value="{$info.name}"/>
+            </p>
+            <p>
+                <label for="subject">Subject</label>
+                <select name="subject" id="subject">
+                    <option value="-1">pls select</option>
+                    {foreach $typelist as $name => $id}
+                    <option value="{$id}"{if $info.subject == $id}selected{/if}>{$name}</option>
+                    {/foreach}
+                </select>
+            </p>
+            <p>
+                <label for="desc">Desc</label>
+                <textarea name="desc" id="desc" class="textarea" cols="10">{$info.desc}</textarea>
+            </p>
+            <p>
+                <label for="tags">Tags</label>
+                <input type="text" name="tags" id="tags" class="text" maxlength="100" value="{$info.tags}"/>
+            </p>
+        </article>
+        {if $id > 0}
+        <article class="res-links">
+            <label for="desc">download links</label>
+            <ul>
+            {foreach $downloads as $link}
+                <li>
+                    <span>{if $link.id > 0}{$link.source}:{$link.resLink}{if $link.extCode != ""}({$link.extCode}){/if}{/if}</span>
+                    <a href="?dellink={$link.id}" target="_blank">delete</a>
+                </li>
+            {/foreach}
+            </ul>
+            <textarea name="links" id="links" class="textarea" cols="10"></textarea>
+        </article>
+        {/if}
+        <article class="form-submit">
+            <input type="submit" value="submit" class="submit-btn"/>
+            <input type="hidden" name="id" id="id" value="{$info.id}" />
+        </article>
+    </section>
+    </body>
+</html>

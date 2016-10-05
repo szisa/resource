@@ -34,13 +34,13 @@ class cSql
             else
                 $queryValue .= $v . ",";
         }
-
-        return $this->query( trim($queryHead, ",") . ")" . trim($queryValue, ",") . ")" );
+        if($this->query( trim($queryHead, ",") . ")" . trim($queryValue, ",") . ")" ) > 0)
+            return $this->db->insert_id;
+        return -1;
     }
 
     function update($table, $data, $where)
     {
-        // UPDATE Person SET FirstName = 'Fred' WHERE LastName = 'Wilson'
         $query = "UPDATE " . $table . " SET ";
 
         foreach ($data as $k => $v) {
@@ -60,7 +60,6 @@ class cSql
             else
                 $query .= $v . "";
         }
-        //echo $query;
         return $this->query($query);
     }
 

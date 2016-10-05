@@ -13,7 +13,7 @@ class cfun
     static function verifysess($key = 'sess_user')
     {
         session_start();
-        return !isset ($_SESSION[$key]);
+        return isset ($_SESSION[$key]);
     }
 
 }

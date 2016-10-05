@@ -17,7 +17,7 @@ define('DB_HOST', 'localhost');
 define('DB_CHARSET', 'utf8');
 /** 数据库整理类型。如不确定请勿更改 */
 define('DB_COLLATE', '');
-define('LOCALHOST', 'http://127.0.0.1/res');
+define('LOCALHOST', 'http://127.0.0.1/isa/res');
 $TYPELIST = array(
     "type1" => 1, 
     "type2" => 2, 
