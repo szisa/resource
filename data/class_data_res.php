@@ -147,7 +147,7 @@ class isa_res_info
         $data = new cArray($this->_data);
         $data->del("id");
         $data->set("createdate", "now()");
-        $data->set("tags", ",".trim($this->_data["tags"], " ,").",");
+        $data->set("tags", trim($this->_data["tags"], " ,"));
         return $data->sqlsafe();
     }
 }
