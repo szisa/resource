@@ -5,7 +5,7 @@
  * 本文件包含以下配置选项: MySQL 设置等等。
  */
 // ** MySQL 设置 - 具体信息来自您正在使用的主机 ** //
-/** WordPress 数据库的名称 */
+/** 数据库的名称 */
 define('DB_NAME', 'isa');
 /** MySQL 数据库用户名 */
 define('DB_USER', 'root');
