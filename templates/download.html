@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>{$title} - {$desc}</title>
+        <mete charset="utf-8" />
+        <link href="./css/view.css" rel="stylesheet" />
+        <script src="./js/do.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <ul class="download-list">
+        {foreach $downloads as $link}  
+            <li>  
+                <a href="{$link.resLink}" target="_blank">{$link.source}</a>
+                {if $link.extCode != ""} <span class="link-ext">提取码：{$link.extCode}</span> {/if}
+            </li>  
+        {/foreach}
+        </ul>  
+    </body>
+</html>

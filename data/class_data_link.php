@@ -6,7 +6,7 @@ use com\cArray as cArray;
 require_once(ABSPATH.'/include/class_com_sql.php'); // a mysql class.
 require_once(ABSPATH.'/include/class_com_array.php'); 
 
-class isa_res_info
+class isa_res_link
 {
     private $_data;
     private $_table;
@@ -14,16 +14,14 @@ class isa_res_info
     function __construct($data = array())
     {
         $this->_data = array(
-            'id' => '',
-            'name' => '',
-            'subject' => '',
-            'tags' => '',
-            'desc' => '',
-            'creator' => 'admin',
-            'createdate' => 'now()',
-            'valid' => '1',
+            'id'       => '',
+            'resId'    => '',
+            'source'   => '',
+            'resLink'  => '',
+            'extCode'  => '',
+            'valid'    => '',
         );
-        $this->_table = "isa_res_info";
+        $this->_table = "isa_res_link";
         $this->set($data);
     }
 
@@ -63,15 +61,6 @@ class isa_res_info
             if(isset($data[$k])) 
             {
                 $this->_data[$k] = $v;
-                if("tags" == $k)
-                {
-                    $tagList = $this->getTags($this->_data["tags"]);
-                    foreach($tagList as $item)
-                    {
-                        $item = trim($item);
-                    }
-                    $this->_data["tags"] = join(",", $tagList);
-                }
             }    
         }
 
@@ -90,38 +79,22 @@ class isa_res_info
         {
             $row = $result->fetch_assoc();
             $datas[$i] = $row;
-            $datas[$i]["tags"] = $this->getTags($datas[$i]["tags"]);
         }
         return $datas;
-    }
-    
-    protected function getTags($tags)
-    {
-        return explode(",", $tags);
     }
     
     protected function getWhere($query)
     {
         $where = '1 = 1 ';
-        if(isset($query["search"]))
-        {
-            $where .= "AND `name` like '%{$query["search"]}%' or `desc` like '%{$query["search"]}%' ";
-            if(!isset($query["tags"])) $where .= " or `tags` like '%{$query["search"]}%'";
-        }
-
-        if(isset($query["tags"]))
-        {
-            $where .= "AND ',' + `tags` + ',' like '%,{$query["tags"]},%'";
-        }
-
-        if(isset($query["subject"]))
-        {
-            $where .= "AND `subject` = '{$query["subject"]}'";
-        }
 
         if(isset($query["id"]))
         {
             $where .= "AND `id` = '{$query["id"]}'";
+        }
+
+        if(isset($query["res"]))
+        {
+            $where .= "AND `resId` = '{$query["res"]}'";
         }
         return $where;
     }
@@ -129,7 +102,7 @@ class isa_res_info
     protected function getData($query)
     {
         $where = $this->getWhere($query);
-        $sql = "select * from `$this->_table` where $where order by `createdate` desc,`id` desc";
+        $sql = "select * from `$this->_table` where $where order by `id` desc";
         return $sql;
     }
 
@@ -144,8 +117,6 @@ class isa_res_info
     {
         $data = cArray($this->_data);
         $data->del("id");
-        $data->set("createdate", "now()");
-        $data->set("tags", ",".trim($this->_data["tags"], " ,").",");
         return $data.safesql();
     }
 }
