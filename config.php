@@ -19,9 +19,9 @@ define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 define('LOCALHOST', 'http://127.0.0.1/isa/res');
 $TYPELIST = array(
-    "type1" => 1, 
-    "type2" => 2, 
-    "type3" => 3
+    "设计工具" => 1, 
+    "编程IDE" => 2, 
+    "系统镜像" => 3
 );
 /** 目录的绝对路径。 */
 if ( !defined('ABSPATH') )

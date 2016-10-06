@@ -3,9 +3,12 @@ require 'libs/Smarty.class.php';
 require_once('config.php');
 require_once('data/class_data_res.php');
 require_once('data/class_data_link.php');
+require_once('include/class_com_fn.php');
 
 use data\isa_res_info as isa_res_info;
 use data\isa_res_link as isa_res_link;
+use com\cfun as cfun;
+
 $smarty = new Smarty;
 $res = new isa_res_info;
 $dlink = new isa_res_link;
@@ -14,8 +17,13 @@ $id = -1;
 $info = $res->get();
 $linkList[0] = $dlink->get();
 
-$smarty->assign("desc", "post a resource", true);
-$smarty->assign("title", "New", true);
+$smarty->assign("desc", "发布一个新资源", true);
+$smarty->assign("title", "新增", true);
+
+if(!cfun::verifysess())
+{
+    header ("Location:".LOCALHOST."/index.php") ;
+}
 
 if(isset($_GET["id"]))
 {
@@ -31,7 +39,7 @@ if(isset($_GET["id"]))
         $info = $infos[0];
         $info["tags"] = join(",", $info["tags"]);
         $smarty->assign("title", $info["name"], true);
-        $smarty->assign("desc", "edit a resource", true);
+        $smarty->assign("desc", "编辑资源信息", true);
    }
 } 
 

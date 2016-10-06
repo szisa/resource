@@ -1,22 +1,22 @@
-{include file="header.html" title="Resource Site" request="get"}
+{include file="header.html" request="get"}
         <header>
             <div class="head-logo">
-                <h1><a href="{LOCALHOST}">Resource Site</a></h1>
+                <h1>
+                    <a href="{LOCALHOST}">{$title}</a>
+                    {if $isAdmin}
+                    <a href="post.php" id="admin-post">+</a>
+                    {/if}
+                </h1>
             </div>
             <div class="head-search">
-                <input type="search" name="s" id="search" value="{$search}"/>
-                <input type="submit" value="search" />
+                <input type="search" name="s" id="search" value="{$search}" class="text"/>
+                <input type="submit" value="➤" class="submit-btn"/>
             </div>
-            {if $isAdmin}
-            <div>
-                <a href="post.php" id="admin-post">Add a new resource</a>
-            </div>
-            {/if}
         </header>
         <nav>
             <ul class="type-list">
                 <li class="type-item {if $type == ''}type-curr{/if}">
-                    <a href="?{if $search != ''}s={$search}&{/if}{if $tag != ''}k={$tag}&{/if}">News</a></li>
+                    <a href="?{if $search != ''}s={$search}&{/if}{if $tag != ''}k={$tag}&{/if}">最新</a></li>
                 {foreach $typelist as $name => $id}  
                 <li class="type-item {if $type == $name}type-curr{/if}">
                     <a href="?{if $search != ''}s={$search}&{/if}{if $tag != ''}k={$tag}&{/if}t={$name}">{$name}</a>
@@ -24,18 +24,18 @@
                 {/foreach}
             </ul>
         </nav>
-        <section>
+        <section class="res-list">
             {section name=item loop=$res}
             <article class="res-item">
                 <header>
                     <h1 class="res-download" title="download {$res[item].name}">
                         <a href="download.php?id={$res[item].id}" target="_blank">{$res[item].name}</a>
                         {if $isAdmin}
-                        <a href="post.php?id={$res[item].id}">edit</a>
+                        <a href="post.php?id={$res[item].id}" class="admin-edit">✐</a>
                         {/if}
                     </h1>
                 </header>
-                <p>{$res[item].desc}</p>
+                <p class="res-desc">{$res[item].desc}</p>
                 <footer>
                     <p class="res-tags">
                         {foreach $res[item].tags as $tagitem}  
@@ -52,4 +52,4 @@
                 <input type="hidden" name="k" value="{$tag}" />
             </article>            
         </section>
-{include file="footer.html"}
+{include file="footer.html" request="get"}

@@ -1,0 +1,98 @@
+.head-logo{
+    text-align:center;
+    margin:1em auto;
+    font-size:200%;
+    vertical-align: middle;
+}
+#admin-post{
+    font-size: 60%;
+    vertical-align: middle;
+}
+.head-search {
+    text-align:center;
+    position: relative;
+    left: -20px;
+}
+.head-search .text{
+    border:1px silver solid;
+    padding: 0;
+    margin:0;
+    width: 100%;
+    line-height: 38px;
+    outline: none;
+    max-width: 584px;
+}
+.head-search .submit-btn{
+    border:none;
+    height: 40px;
+    width: 40px;
+    font-size:0px;
+    margin:0;
+    padding:0;
+    vertical-align: top;
+    background-color: #aF0700;
+    color: #FFF;
+}
+ul.type-list {
+    padding: 5px 10px 0;
+    width:100%;
+    max-width: 680px;
+    margin: 35px auto 0;
+    text-align: justify;
+}
+li.type-item a {
+    color:#000;
+}
+
+li.type-item {
+    display: inline-block;
+    width: 15%;
+    margin: 0 4%;
+    border: 1px solid #aF0700;
+    text-align: center;
+}
+li.type-curr {
+    background-color:#aF0700;
+}
+li.type-curr a{
+    color: #FFF;
+}
+.res-list{
+    margin: 15px 0;
+}
+.res-item {
+    padding: 10px 10px 10px;
+    width:100%;
+    max-width: 680px;
+    margin:auto;
+}
+
+.res-desc {
+    padding: 5px 0 0;
+}
+
+p.res-tags {
+    text-align:left;
+    margin: 0;
+    padding: 0;
+}
+
+footer p {
+    text-align:center;
+    color:#c3c4c5;
+    font-size:80%;
+}
+
+.res-tags a {
+    color:#c3c4c5;
+    font-weight:thin;
+    font-size:80%;
+}
+
+footer a {
+    color:#c3c4c5;
+}
+
+footer a:hover {
+    color:#aF0700;
+}

@@ -2,30 +2,31 @@
     <section>
         <article class="res-info">
             <p>
-                <label for="name">Name</label>
+                <label for="name">名称</label>
                 <input type="text" name="name" id="name" class="text" maxlength="100" value="{$info.name}"/>
             </p>
             <p>
-                <label for="subject">Subject</label>
+                <label for="subject">分类</label>
                 <select name="subject" id="subject">
-                    <option value="-1">pls select</option>
+                    <option value="-1">请选择</option>
                     {foreach $typelist as $name => $id}
                     <option value="{$id}"{if $info.subject == $id}selected{/if}>{$name}</option>
                     {/foreach}
                 </select>
             </p>
             <p>
-                <label for="desc">Desc</label>
+                <label for="desc">简介</label>
                 <textarea name="desc" id="desc" class="textarea" cols="10">{$info.desc}</textarea>
             </p>
             <p>
-                <label for="tags">Tags</label>
+                <label for="tags">标签</label>
                 <input type="text" name="tags" id="tags" class="text" maxlength="100" value="{$info.tags}"/>
+                <span class="form-tip">多个标签用英文逗号隔开</span>
             </p>
         </article>
         {if $id > 0}
         <article class="res-links">
-            <label for="desc">download links</label>
+            <label for="desc">下载链接列表</label>
             <ul>
             {foreach $downloads as $link}
                 <li>
@@ -35,10 +36,11 @@
             {/foreach}
             </ul>
             <textarea name="links" id="links" class="textarea" cols="10"></textarea>
+            <span class="form-tip">批量新增方法：名称,链接(提取码)</span>
         </article>
         {/if}
         <article class="form-submit">
-            <input type="submit" value="submit" class="submit-btn"/>
+            <input type="submit" value="提交" class="submit-btn"/>
             <input type="hidden" name="id" id="id" value="{$info.id}" />
         </article>
     </section>

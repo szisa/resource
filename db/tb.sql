@@ -34,7 +34,7 @@ DROP TABLE IF EXISTS `isa_res_base`;
 CREATE TABLE `isa_res_base` (
   `key`      VARCHAR(50)   NOT NULL        COMMENT '网站基本信息键',
   `value`    VARCHAR(200)  NOT NULL        COMMENT '网站基本信息值',
-  `desc`     VARCHAR(200)   NOT NULL        COMMENT '网站基本信息描述',
+  `desc`     VARCHAR(200)  NOT NULL        COMMENT '网站基本信息描述',
   `valid`    BIT           DEFAULT 1       COMMENT '是否有效'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1;
 

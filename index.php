@@ -40,10 +40,11 @@ if(isset($_GET["t"]) && $_GET["t"] != "")
 
 $resList = $res->select($query);
 
+$smarty->assign("title", "创软资源下载站", true);
+$smarty->assign("desc", "我们不存储资源，我们只是资源的搬运工。", true);
 $smarty->assign("tag", $tag);
 $smarty->assign("search", $search);
 $smarty->assign("type", $type);
-$smarty->assign("desc", "a resource site", true);
 $smarty->assign("typelist", $TYPELIST);
 $smarty->assign("res", $resList);
 $smarty->assign("isAdmin", $isAdmin);
