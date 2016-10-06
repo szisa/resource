@@ -25,6 +25,8 @@
             </ul>
         </nav>
         <section class="res-list">
+            {if $tag != '' || $search != ''}<h1>{if $tag != ''}标签：{$tag}{/if} {if $search != ''}关键字：{$search}{/if}</h1>{/if}
+            {if count($res) > 0}
             {section name=item loop=$res}
             <article class="res-item">
                 <header>
@@ -47,6 +49,11 @@
                 </footer>
             </article>
             {/section}
+            {else}
+            <article class="res-item">
+                <p class="res-desc">没有找到匹配的资源</p>
+            </article>
+            {/if}
             <article class="form-item">
                 <input type="hidden" name="t" value="{$type}" />
                 <input type="hidden" name="k" value="{$tag}" />

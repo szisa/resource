@@ -58,13 +58,27 @@ li.type-curr a{
     color: #FFF;
 }
 .res-list{
-    margin: 15px 0;
+    margin: 15px auto;
+    width: 100%;
+    max-width: 680px;
+    margin: auto;
+}
+.res-list>h1{
+    padding: 25px 5px 10px;
+    color:#aF0700;
+    font-weight: bold;
 }
 .res-item {
     padding: 10px 10px 10px;
     width:100%;
-    max-width: 680px;
-    margin:auto;
+}
+
+.res-item:hover{
+    background-color:#EEE;
+}
+
+.res-item:hover .res-tags a{
+    color:#707172;
 }
 
 .res-desc {
@@ -85,7 +99,7 @@ footer p {
 
 .res-tags a {
     color:#c3c4c5;
-    font-weight:thin;
+    font-weight: lighter;
     font-size:80%;
 }
 
