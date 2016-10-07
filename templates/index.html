@@ -10,7 +10,7 @@
             </div>
             <div class="head-search">
                 <input type="search" name="s" id="search" value="{$search}" class="text"/>
-                <input type="submit" value="➤" class="submit-btn"/>
+                <input type="submit" value="&#xe900;" class="submit-btn icon-search"/>
             </div>
         </header>
         <nav>
@@ -25,7 +25,16 @@
             </ul>
         </nav>
         <section class="res-list">
-            {if $tag != '' || $search != ''}<h1>{if $tag != ''}标签：{$tag}{/if} {if $search != ''}关键字：{$search}{/if}</h1>{/if}
+            {if $tag != '' || $search != ''}
+            <h1>
+                {if $tag != ''}
+                    标签：<a class="link-rm icon-close" href="?{if $search != ''}s={$search}&{/if}{if $type != ''}t={$type}&{/if}">{$tag}</a>
+                {/if} 
+                {if $search != ''}
+                    关键字：<a class="link-rm icon-close" href="?{if $tag != ''}k={$tag}&{/if}{if $type != ''}t={$type}&{/if}">{$search}</a>
+                {/if}
+            </h1>
+            {/if}
             {if count($res) > 0}
             {section name=item loop=$res}
             <article class="res-item">

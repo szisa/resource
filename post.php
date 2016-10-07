@@ -25,6 +25,17 @@ if(!cfun::verifysess())
     header ("Location:".LOCALHOST."/index.php") ;
 }
 
+if(isset($_GET["del"]))
+{
+    $link = array(
+        "id" => $_GET["del"],
+        "valid" => 0,
+    );
+    $dlink->update($link);
+    echo "<script>opener.location.reload();window.close();</script>";
+    die();
+}
+
 if(isset($_GET["id"]))
 {
     $id = $_GET["id"];

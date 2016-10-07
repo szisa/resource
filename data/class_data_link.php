@@ -37,11 +37,13 @@ class isa_res_link
         return $result;
     }
 
-    function update($data)
+    function update($data = null)
     {
+        if(null != $data) $this->set($data);
+        $data = $this->getUpdate($data);
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-        $result = $db->update($this->_table, $this->getUpdate(), array("id" => $this->_data["id"], "valid" => "1"));
+        $result = $db->update($this->_table, $data, array("id" => $this->_data["id"], "valid" => "1"));
         return $result;
     }
 
@@ -85,7 +87,7 @@ class isa_res_link
     
     protected function getWhere($query)
     {
-        $where = '1 = 1 ';
+        $where = '`valid` = 1 ';
 
         if(isset($query["id"]))
         {
@@ -106,15 +108,17 @@ class isa_res_link
         return $sql;
     }
 
-    protected function getUpdate()
+    protected function getUpdate($data = null)
     {
-        $data = new cArray($this->_data);
+        if(null == $data) $data = $this->_data;
+        $data = new cArray($data);
         $data->del("id");
         return $data->sqlsafe();
     }
 
-    protected function getInsert()
+    protected function getInsert($data = null)
     {
+        if(null == $data) $data = $this->_data;
         $data = new cArray($this->_data);
         $data->del("id");
         return $data->sqlsafe();

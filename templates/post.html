@@ -1,6 +1,6 @@
 {include file="header.html" request="post"}
-    <section>
-        <article class="res-info">
+    <section class="post-info">
+        <article class="post-res">
             <p>
                 <label for="name">名称</label>
                 <input type="text" name="name" id="name" class="text" maxlength="100" value="{$info.name}"/>
@@ -16,27 +16,32 @@
             </p>
             <p>
                 <label for="desc">简介</label>
-                <textarea name="desc" id="desc" class="textarea" cols="10">{$info.desc}</textarea>
+                <textarea name="desc" id="desc" class="textarea" cols="25">{$info.desc}</textarea>
             </p>
             <p>
                 <label for="tags">标签</label>
-                <input type="text" name="tags" id="tags" class="text" maxlength="100" value="{$info.tags}"/>
-                <span class="form-tip">多个标签用英文逗号隔开</span>
+                <input type="text" name="tags" id="tags" class="text" maxlength="100" value="{$info.tags}" placeholder="多个标签用英文逗号隔开"/>
             </p>
         </article>
         {if $id > 0}
-        <article class="res-links">
+        <article class="post-links">
             <label for="desc">下载链接列表</label>
-            <ul>
+            <ul class="res-links">
             {foreach $downloads as $link}
                 <li>
-                    <span>{if $link.id > 0}{$link.source}:{$link.resLink}{if $link.extCode != ""}({$link.extCode}){/if}{/if}</span>
-                    <a href="?dellink={$link.id}" target="_blank">delete</a>
+                    <a href="?del={$link.id}" target="_blank" class="icon-close" title="删除"><span class="hide">删除</span></a>
+                    <span>
+                        {if $link.id > 0}
+                            <span class="link-name">{$link.source}:</span>
+                            <span class="link-src">{$link.resLink}</span>
+                            {if $link.extCode != ""}<span class="link-extcode" title="提取码">{$link.extCode}</span>{/if}
+                        {/if}
+                    </span>
                 </li>
             {/foreach}
             </ul>
             <textarea name="links" id="links" class="textarea" cols="10"></textarea>
-            <span class="form-tip">批量新增方法：名称,链接(提取码)</span>
+            <p class="form-tip">批量新增方法：名称,链接(提取码)</p>
         </article>
         {/if}
         <article class="form-submit">
@@ -44,5 +49,6 @@
             <input type="hidden" name="id" id="id" value="{$info.id}" />
         </article>
     </section>
+    </form>
     </body>
 </html>

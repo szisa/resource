@@ -39,11 +39,12 @@ class isa_res_info
         return $result;
     }
 
-    function update()
+    function update($data = null)
     {
+        if(null == $data) $data = $this->getUpdate();
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-        $result = $db->update($this->_table, $this->getUpdate(), array("id" => $this->_data["id"], "valid" => "1"));
+        $result = $db->update($this->_table, $data, array("id" => $this->_data["id"], "valid" => "1"));
         return $result;
     }
 
@@ -102,7 +103,7 @@ class isa_res_info
     
     protected function getWhere($query)
     {
-        $where = '1 = 1 ';
+        $where = '`valid` = 1 ';
         if(isset($query["search"]))
         {
             $where .= "AND (`name` like '%{$query["search"]}%' or `desc` like '%{$query["search"]}%' ";
