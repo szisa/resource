@@ -2,14 +2,14 @@
         <header>
             <div class="head-logo">
                 <h1>
-                    <a href="{LOCALHOST}">{$title}</a>
+                    <a href="{LOCALHOST}" class="icon-logo">资源</a><a href="http://sxisa.org" class="vendor">创软</a>
                     {if $isAdmin}
-                    <a href="post.php" id="admin-post">+</a>
+                    <a href="post.php" id="admin-post" title="新增资源">+</a>
                     {/if}
                 </h1>
             </div>
             <div class="head-search">
-                <input type="search" name="s" id="search" value="{$search}" class="text"/>
+                <input type="search" name="s" id="search" value="{$search}" class="text" placeholder="客官~想要来点啥？"/>
                 <input type="submit" value="&#xe900;" class="submit-btn icon-search"/>
             </div>
         </header>
@@ -40,7 +40,7 @@
             <article class="res-item">
                 <header>
                     <h1 class="res-download" title="download {$res[item].name}">
-                        <a href="download.php?id={$res[item].id}" target="_blank" {if !$isAdmin} class="icon-download" {/if} title="下载 {$res[item].name}">{$res[item].name}</a>
+                        <a href="download.php?id={$res[item].id}" target="_blank" class="res-links{if !$isAdmin}  icon-download{/if}"  title="下载 {$res[item].name}">{$res[item].name}</a>
                         {if $isAdmin}
                         <a href="post.php?id={$res[item].id}" class="admin-edit">✐</a>
                         {/if}
