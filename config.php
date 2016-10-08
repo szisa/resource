@@ -20,7 +20,7 @@ define('DB_COLLATE', '');
 define('LOCALHOST', 'http://127.0.0.1/isa/res');
 $TYPELIST = array(
     "设计工具" => 1, 
-    "编程IDE" => 2, 
+    "开发环境" => 2, 
     "系统镜像" => 3
 );
 /** 目录的绝对路径。 */

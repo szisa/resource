@@ -40,7 +40,7 @@
             <article class="res-item">
                 <header>
                     <h1 class="res-download" title="download {$res[item].name}">
-                        <a href="download.php?id={$res[item].id}" target="_blank">{$res[item].name}</a>
+                        <a href="download.php?id={$res[item].id}" target="_blank" {if !$isAdmin} class="icon-download" {/if} title="下载 {$res[item].name}">{$res[item].name}</a>
                         {if $isAdmin}
                         <a href="post.php?id={$res[item].id}" class="admin-edit">✐</a>
                         {/if}

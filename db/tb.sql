@@ -7,7 +7,7 @@ CREATE TABLE `isa_res_info` (
   `desc`     text          DEFAULT NULL    COMMENT '资源描述',
   `creator`  VARCHAR(50)   DEFAULT NULL    COMMENT '发布者',
   `createdate` DATETIME    DEFAULT NULL    COMMENT '访问日期',
-  `valid`    BIT           DEFAULT 1       COMMENT '是否有效',
+  `valid`    INT           DEFAULT 1       COMMENT '是否有效',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1;
 
@@ -18,7 +18,7 @@ CREATE TABLE `isa_res_link` (
   `source`   VARCHAR(100)  NOT NULL        COMMENT '来源名称，作为网页上链接名称，如百度网盘',
   `resLink`  VARCHAR(500)  DEFAULT NULL    COMMENT '资源链接',
   `extCode`  VARCHAR(10)   DEFAULT NULL    COMMENT '提取码',
-  `valid`    BIT           DEFAULT 1       COMMENT '是否有效',
+  `valid`    INT           DEFAULT 1       COMMENT '是否有效',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1;
 
@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `isa_res_type`;
 CREATE TABLE `isa_res_type` (
   `id`       INT  NOT NULL AUTO_INCREMENT  COMMENT '资源类型ID，自增长',
   `name`     VARCHAR(100)  NOT NULL        COMMENT '类型名称',
-  `valid`    BIT           DEFAULT 1       COMMENT '是否有效',
+  `valid`    INT           DEFAULT 1       COMMENT '是否有效',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1;
 
@@ -35,13 +35,13 @@ CREATE TABLE `isa_res_base` (
   `key`      VARCHAR(50)   NOT NULL        COMMENT '网站基本信息键',
   `value`    VARCHAR(200)  NOT NULL        COMMENT '网站基本信息值',
   `desc`     VARCHAR(200)  NOT NULL        COMMENT '网站基本信息描述',
-  `valid`    BIT           DEFAULT 1       COMMENT '是否有效'
+  `valid`    INT           DEFAULT 1       COMMENT '是否有效'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1;
 
 INSERT INTO `isa_res_base` (`key`, `value`, `desc`)
-VALUES  ('adminUser', 'admin', '管理员账号', 1);
+VALUES  ('adminUser', 'admin', '管理员账号');
 INSERT INTO `isa_res_base` (`key`, `value`, `desc`)
-VALUES  ('adminPwd', '112358', '管理员密码', 1);
+VALUES  ('adminPwd', '112358', '管理员密码');
 
 -- 创建保存基本配置存储过程
 DELIMITER //

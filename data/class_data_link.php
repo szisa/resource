@@ -19,7 +19,7 @@ class isa_res_link
             'source'   => '',
             'resLink'  => '',
             'extCode'  => '',
-            'valid'    => '',
+            'valid'    => '1',
         );
         $this->_table = "isa_res_link";
         $this->set($data);
