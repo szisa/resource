@@ -88,9 +88,9 @@ li.type-item a {
 }
 
 li.type-item {
-    display: inline-block;
-    width: 20%;
-    margin: 0 3% 10px 0;
+    float: left;
+    width: calc((100% - 7% - 2em) / 4);
+    margin: 0 1.5% 10px 0;
     border: 1px solid #aF0700;
     text-align: center;
 }

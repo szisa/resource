@@ -43,8 +43,8 @@ $resList = $res->select($query);
 
 $smarty->assign("title", "创软资源下载站", true);
 $smarty->assign("desc", "我们不存储资源，我们只是资源的搬运工。", true);
-$smarty->assign("tag", $tag);
-$smarty->assign("search", $search);
+$smarty->assign("tag", urlencode($tag));
+$smarty->assign("search", urlencode($search));
 $smarty->assign("type", $type);
 $smarty->assign("typelist", $TYPELIST);
 $smarty->assign("res", $resList);

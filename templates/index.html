@@ -9,7 +9,7 @@
                 </h1>
             </div>
             <div class="head-search">
-                <input type="search" name="s" id="search" value="{$search}" class="text" placeholder="客官~想要来点啥？ᕕ ( ᐛ ) ᕗ"/>
+                <input type="search" name="s" id="search" value="{urldecode($search)}" class="text" placeholder="客官~想要来点啥？ᕕ ( ᐛ ) ᕗ"/>
                 <input type="submit" value="&#xe900;" class="submit-btn icon-search"/>
             </div>
         </header>
@@ -33,10 +33,10 @@
             {if $tag != '' || $search != ''}
             <h1>
                 {if $tag != ''}
-                    标签：<a class="link-rm icon-close" href="?{if $search != ''}s={$search}&{/if}{if $type != ''}t={$type}&{/if}">{$tag}</a>
+                    标签：<a class="link-rm icon-close" href="?{if $search != ''}s={$search}&{/if}{if $type != ''}t={$type}&{/if}">{urldecode($tag)}</a>
                 {/if} 
                 {if $search != ''}
-                    关键字：<a class="link-rm icon-close" href="?{if $tag != ''}k={$tag}&{/if}{if $type != ''}t={$type}&{/if}">{$search}</a>
+                    关键字：<a class="link-rm icon-close" href="?{if $tag != ''}k={$tag}&{/if}{if $type != ''}t={$type}&{/if}">{urldecode($search)}</a>
                 {/if}
             </h1>
             {/if}
@@ -56,7 +56,7 @@
                     <p class="res-tags">
                         {foreach $res[item].tags as $tagitem}  
                             <span>  
-                                <a href="?{if $search != ''}s={$search}&{/if}{if $type != ''}t={$type}&{/if}k={$tagitem}">{$tagitem}</a>, 
+                                <a href="?{if $search != ''}s={$search}&{/if}{if $type != ''}t={$type}&{/if}k={urlencode($tagitem)}">{$tagitem}</a>, 
                             </span>  
                         {/foreach}  
                     </p>
@@ -70,7 +70,7 @@
             {/if}
             <article class="form-item">
                 <input type="hidden" name="t" value="{$type}" />
-                <input type="hidden" name="k" value="{$tag}" />
+                <input type="hidden" name="k" value="{urldecode($tag)}" />
             </article>            
         </section>
 {include file="footer.html" request="get"}

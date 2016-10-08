@@ -107,7 +107,7 @@ class isa_res_info
         if(isset($query["search"]))
         {
             $where .= "AND (`name` like '%{$query["search"]}%' or `desc` like '%{$query["search"]}%' ";
-            if(!isset($query["tags"])) $where .= " or `tags` like '%{$query["search"]}%'";
+            $where .= " or `tags` like '%{$query["search"]}%'";
             $where .= ")";
         }
 
