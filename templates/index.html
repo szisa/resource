@@ -17,10 +17,15 @@
             <ul class="type-list">
                 <li class="type-item {if $type == ''}type-curr{/if}">
                     <a href="?{if $search != ''}s={$search}&{/if}{if $tag != ''}k={$tag}&{/if}">最新</a></li>
-                {foreach $typelist as $name => $id}  
+                {foreach $typelist as $name => $id name=typelist}  
                 <li class="type-item {if $type == $name}type-curr{/if}">
                     <a href="?{if $search != ''}s={$search}&{/if}{if $tag != ''}k={$tag}&{/if}t={$name}">{$name}</a>
                 </li>
+                {if $smarty.foreach.typelist.index == 2}
+                 <li class="type-item type-more">
+                    <a href="#more" title="查看更多分类" id="more-type">...</a>
+                </li>
+                {/if}
                 {/foreach}
             </ul>
         </nav>

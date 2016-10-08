@@ -21,7 +21,8 @@ define('LOCALHOST', 'http://127.0.0.1/isa/res');
 $TYPELIST = array(
     "设计工具" => 1, 
     "开发环境" => 2, 
-    "系统镜像" => 3
+    "系统工具" => 4,
+    "系统镜像" => 3,
 );
 /** 目录的绝对路径。 */
 if ( !defined('ABSPATH') )

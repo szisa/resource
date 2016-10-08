@@ -17,6 +17,7 @@ $smarty->caching = false;
 $search = "";
 $tag = "";
 $type = "";
+$isMore = false;
 $isAdmin = cfun::verifysess();
 
 $query = array();
