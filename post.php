@@ -27,8 +27,19 @@ if(!cfun::verifysess())
 
 if(isset($_GET["del"]))
 {
-    $link = array(
+    $info = array(
         "id" => $_GET["del"],
+        "valid" => 0,
+    );
+    $res.update($info);
+    header ("Location:".LOCALHOST."/index.php");
+    die();
+}
+
+if(isset($_GET["delink"]))
+{
+    $link = array(
+        "id" => $_GET["delink"],
         "valid" => 0,
     );
     $dlink->update($link);

@@ -24,6 +24,7 @@ $TYPELIST = array(
     "系统工具" => 4,
     "系统镜像" => 3,
 );
+define('TONGJI','');
 /** 目录的绝对路径。 */
 if ( !defined('ABSPATH') )
     define('ABSPATH', dirname(__FILE__) . '/');

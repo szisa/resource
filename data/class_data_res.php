@@ -116,7 +116,7 @@ class isa_res_info
     
     protected function getWhere($query)
     {
-        $where = '`valid` = 1 ';
+        $where = 'binary `valid` = 1 ';
         if(isset($query["search"]))
         {
             $where .= "AND (`name` like '%{$query["search"]}%' or `desc` like '%{$query["search"]}%' ";
