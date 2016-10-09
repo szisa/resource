@@ -63,6 +63,25 @@
                 </footer>
             </article>
             {/section}
+            {if $pagecount > 1}
+            <nav>
+                <ul class="page-list">
+                    <li class="page-item"><a href="?{if $search != ''}s={$search}&{/if}{if $type != ''}t={$type}&{/if}{if $tag != ''}k={urlencode($tag)}&{/if}p={$p - 1}">&lt;</a></li>
+                    {for $var= $pageBegin to $pageEnd}
+                    <li class="page-item">
+                        {if $var != $p}
+                        <a href="?{if $search != ''}s={$search}&{/if}{if $type != ''}t={$type}&{/if}{if $tag != ''}k={urlencode($tag)}&{/if}p={$var}">
+                        {$var}
+                        </a>
+                        {else}
+                        {$var}
+                        {/if}
+                    </li>
+                    {/for}
+                    <li class="page-item"><a href="?{if $search != ''}s={$search}&{/if}{if $type != ''}t={$type}&{/if}{if $tag != ''}k={urlencode($tag)}&{/if}p={$p + 1}">&gt;</a></li>
+                </ul>
+            </nav>
+            {/if}
             {else}
             <article class="res-item">
                 <p class="res-desc">Σ(ﾟДﾟ；≡；ﾟдﾟ) 啥也没找到！</p>
@@ -71,6 +90,7 @@
             <article class="form-item">
                 <input type="hidden" name="t" value="{$type}" />
                 <input type="hidden" name="k" value="{urldecode($tag)}" />
+                <input type="hidden" name="p" value="{$p}" />
             </article>            
         </section>
 {include file="footer.html" request="get"}

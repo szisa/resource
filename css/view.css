@@ -5,6 +5,9 @@ body{
 .hide{
   display: none;
 }
+textarea{
+  word-break: break-all;
+}
 input:focus{
   outline-color:#aF0700;
   outline-offset: -1px;
@@ -154,6 +157,13 @@ li.type-more:hover a,li.type-more-on a{
     border-left: 2px solid #aF0700;
     padding-left: 8px;
 }
+.page-list{
+  float:right;
+}
+.page-item{
+  display:inline-block;
+  padding:0 5px;
+}
 
 .res-item:hover h1{
     /* font-weight:bold; */
@@ -184,6 +194,7 @@ p.res-tags {
 }
 
 footer p {
+    clear:both;
     text-align:center;
     color:#c3c4c5;
     font-size:80%;
@@ -204,6 +215,10 @@ footer a:hover {
     color:#aF0700;
 }
 /*post page*/
+.nav-item{
+  display:inline-block;
+  margin:10px 20px
+}
 .post-info label{
   display:inline-block;
   color:#FFF;

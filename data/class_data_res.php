@@ -10,6 +10,7 @@ class isa_res_info
 {
     private $_data;
     private $_table;
+    private $_count;
 
     function __construct($data = array())
     {
@@ -24,6 +25,7 @@ class isa_res_info
             'valid' => '1',
         );
         $this->_table = "isa_res_info";
+        $this->_count = 10;
         $this->set($data);
     }
 
@@ -48,13 +50,24 @@ class isa_res_info
         return $result;
     }
 
-    function select($query)
+    function select($query, $p = null)
     {
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-        $sql = $this->getData($query);
+        $sql = $this->getData($query, $p);
         $result = $db->query($sql);
         return $this->toData($result);
+    }
+
+    function page($query)
+    {
+        $db = new cSql();
+        $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+        $sql = $this->getCount($query);
+        $result = $db->query($sql);
+        $row = $result->fetch_assoc();
+        $page = $row["counts"] / $this->_count;
+        return $page;
     }
 
     function set($data)
@@ -125,14 +138,29 @@ class isa_res_info
         {
             $where .= "AND `id` = '{$query["id"]}'";
         }
+
         return $where;
     }
 
-    protected function getData($query)
+    protected function getData($query, $p = null)
     {
         $where = $this->getWhere($query);
         $sql = "select * from `$this->_table` where $where order by `createdate` desc,`id` desc";
-        return $sql;
+        if(null != $p)
+        {
+            $count = $this->_count;
+            $begin = (($p - 1) * $count) + 1;
+            if($p > 1) $sql .= " limit ".$begin.",".$count;
+            else $sql .= " limit ".$count;
+        }
+       return $sql;
+    }
+
+    protected function getCount($query)
+    {
+        $where = $this->getWhere($query);
+        $sql = "select count(*) counts from `$this->_table` where $where";
+       return $sql;
     }
 
     protected function getUpdate()

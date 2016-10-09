@@ -19,6 +19,7 @@ $tag = "";
 $type = "";
 $isMore = false;
 $isAdmin = cfun::verifysess();
+$p = 1;
 
 $query = array();
 if(isset($_GET["s"]) && $_GET["s"] != "")
@@ -39,13 +40,25 @@ if(isset($_GET["t"]) && $_GET["t"] != "")
     $type = $_GET["t"];
 }
 
-$resList = $res->select($query);
+if(isset($_GET["p"]) && $_GET["p"] != "")
+{
+    $p = $_GET["p"];
+}
+
+$PageCount = $res->page($query);
+$resList = $res->select($query, $p);
+$pageBegin = $p - 2 < 1 ? 1 : $p - 2;
+$pageEnd = $p + 5 < $PageCount ? $p + 5 : $PageCount;
 
 $smarty->assign("title", "创软资源下载站", true);
 $smarty->assign("desc", "我们不存储资源，我们只是资源的搬运工。", true);
 $smarty->assign("tag", urlencode($tag));
 $smarty->assign("search", urlencode($search));
 $smarty->assign("type", $type);
+$smarty->assign("p", $p);
+$smarty->assign("pageBegin", $pageBegin);
+$smarty->assign("pageEnd", $pageEnd);
+$smarty->assign("pagecount", $PageCount);
 $smarty->assign("typelist", $TYPELIST);
 $smarty->assign("res", $resList);
 $smarty->assign("isAdmin", $isAdmin);

@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(ev) {
     showmore = function(more)
     {
+        if(!document.getElementsByClassName("type-list")[0]) return;
         if (more)
         {
             document.getElementsByClassName("type-list")[0].className = "type-list type-list-slide";

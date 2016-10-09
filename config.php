@@ -10,9 +10,9 @@ define('DB_NAME', 'isa');
 /** MySQL 数据库用户名 */
 define('DB_USER', 'root');
 /** MySQL 数据库密码 */
-define('DB_PASSWORD', '12345678');
+define('DB_PASSWORD', '`1qw23');
 /** MySQL 主机 */
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'sxisa.org');
 /** 创建数据表时默认的文字编码 */
 define('DB_CHARSET', 'utf8');
 /** 数据库整理类型。如不确定请勿更改 */
