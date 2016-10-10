@@ -3,8 +3,10 @@ namespace data;
 
 use com\cSql as cSql;
 use com\cArray as cArray;
+use com\cfun as cfun;
 require_once(ABSPATH.'/include/class_com_sql.php'); // a mysql class.
 require_once(ABSPATH.'/include/class_com_array.php'); 
+require_once(ABSPATH.'/include/class_com_fn.php'); 
 
 class isa_res_info
 {
@@ -43,7 +45,8 @@ class isa_res_info
 
     function update($data = null)
     {
-        if(null == $data) $data = $this->getUpdate();
+        if(null != $data) $this->set($data);
+        $data = $this->getUpdate($data);
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         $result = $db->update($this->_table, $data, array("id" => $this->_data["id"], "valid" => "1"));
@@ -111,7 +114,7 @@ class isa_res_info
     
     protected function getTags($tags)
     {
-        return explode(",", $tags);
+        return explode(",", cfun::replacezh($tags));
     }
     
     protected function getWhere($query)
@@ -163,9 +166,10 @@ class isa_res_info
        return $sql;
     }
 
-    protected function getUpdate()
+    protected function getUpdate($data = null)
     {
-        $data = new cArray($this->_data);
+        if(null == $data) $data = $this->_data;
+        $data = new cArray($data);
         $data->del("id");
         $data->del("createdate");
         return $data->sqlsafe();

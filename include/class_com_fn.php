@@ -16,4 +16,11 @@ class cfun
         return isset ($_SESSION[$key]);
     }
 
+    static function replacezh($str)
+    {
+        $str = str_replace("，", ",", $str);
+        $str = str_replace("）", ")", $str);
+        $str = str_replace("（", "(", $str);
+        return $str;
+    }
 }

@@ -25,17 +25,19 @@ if(!cfun::verifysess())
     header ("Location:".LOCALHOST."/index.php") ;
 }
 
+// 删除资源
 if(isset($_GET["del"]))
 {
     $info = array(
         "id" => $_GET["del"],
         "valid" => 0,
     );
-    $res.update($info);
+    $res->update($info);
     header ("Location:".LOCALHOST."/index.php");
     die();
 }
 
+// 删除资源链接
 if(isset($_GET["delink"]))
 {
     $link = array(
@@ -72,7 +74,7 @@ if(isset($_POST["id"]))
     {
         $res->update();
         $info = $res->get();
-        $linkPost = explode("\n", $_POST["links"]);
+        $linkPost = explode("\n", cfun::replacezh($_POST["links"]));
         $id = $_POST["id"];
         foreach($linkPost as $link)
         {
