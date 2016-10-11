@@ -20,6 +20,7 @@ define('TONGJI','');
 /** 目录的绝对路径。 */
 if ( !defined('ABSPATH') )
     define('ABSPATH', dirname(__FILE__) . '/');
+
 $TYPELIST = array(
     "设计工具" => 1, 
     "开发环境" => 2,
@@ -29,4 +30,3 @@ $TYPELIST = array(
     "电子书"  => 6,
 );
   
-?>

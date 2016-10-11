@@ -9,10 +9,12 @@ require_once(ABSPATH.'/include/class_com_sql.php'); // a mysql class.
 require_once(ABSPATH.'/include/class_com_array.php'); 
 require_once(ABSPATH.'/include/class_com_fn.php'); 
 
+// 网页基本信息
 class isa_web_base
 {
     static private $_table = 'isa_res_base';
 
+    // 获取指定key值
     static function Get($key)
     {
         $db = new cSql();
@@ -25,6 +27,8 @@ class isa_web_base
         }
         return "";
     }
+
+    // 设置指定key值
     static function Set($key, $value)
     {
         $db = new cSql();
@@ -32,12 +36,16 @@ class isa_web_base
         $result = $db->query(isa_web_base::Write(cfun::sqlsafe($key), cfun::sqlsafe($value)));
         return $result;
     }
+
+    // 生成读SQL
     static protected function Read($key)
     {
         $table = isa_web_base::$_table;
         $sql = "SELECT * FROM `{$table}` WHERE `valid` = 1 AND `key` = '{$key}' LIMIT 1 ;";
         return $sql;
     }
+
+    // 生成写SQL
     static protected function Write($key, $value)
     {
         $sql = "CALL `SetBase`('$key', '$value');";

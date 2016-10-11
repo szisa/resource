@@ -8,6 +8,7 @@ require_once(ABSPATH.'/include/class_com_sql.php'); // a mysql class.
 require_once(ABSPATH.'/include/class_com_array.php'); 
 require_once(ABSPATH.'/include/class_com_fn.php'); 
 
+// 资源信息类
 class isa_res_info
 {
     private $_data;
@@ -35,6 +36,7 @@ class isa_res_info
     {
     }
     
+    // 将此资源插入
     function insert()
     {
         $db = new cSql();
@@ -43,6 +45,7 @@ class isa_res_info
         return $result;
     }
 
+    // 更新资源指定栏位资讯，注意要传入id
     function update($data = null)
     {
         if(null != $data) $this->set($data);
@@ -53,6 +56,7 @@ class isa_res_info
         return $result;
     }
 
+    // 根据查询条件与页码获取资源列表
     function select($query, $p = null)
     {
         $db = new cSql();
@@ -62,6 +66,7 @@ class isa_res_info
         return $this->toData($result);
     }
 
+    // 获取指定查询条件总页码
     function page($query)
     {
         $db = new cSql();
@@ -73,6 +78,7 @@ class isa_res_info
         return $page;
     }
 
+    // 设置资源信息
     function set($data)
     {
         foreach ($this->_data as $k => $v) 
@@ -95,11 +101,13 @@ class isa_res_info
         return $this->_data;
     }
 
+    // 获取资源信息
     function get()
     {
         return $this->_data;
     }
 
+    // 将数据库数组转为资源列表
     protected function toData($result)
     {
         $datas = array();
@@ -112,11 +120,13 @@ class isa_res_info
         return $datas;
     }
     
+    // 获取标签数组
     protected function getTags($tags)
     {
         return explode(",", cfun::replacezh($tags));
     }
     
+    // 获取查询条件
     protected function getWhere($query)
     {
         $where = 'binary `valid` = 1 ';
@@ -145,6 +155,7 @@ class isa_res_info
         return $where;
     }
 
+    // 获取指定分页与查询条件数据
     protected function getData($query, $p = null)
     {
         $where = $this->getWhere($query);
@@ -159,6 +170,7 @@ class isa_res_info
        return $sql;
     }
 
+    // 获取数据总笔数
     protected function getCount($query)
     {
         $where = $this->getWhere($query);
@@ -166,6 +178,7 @@ class isa_res_info
        return $sql;
     }
 
+    // 获取更新数据
     protected function getUpdate($data = null)
     {
         if(null == $data) $data = $this->_data;
@@ -175,6 +188,7 @@ class isa_res_info
         return $data->sqlsafe();
     }
 
+    // 获取插入数据
     protected function getInsert()
     {
         $data = new cArray($this->_data);

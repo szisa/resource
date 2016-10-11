@@ -39,9 +39,9 @@ CREATE TABLE `isa_res_base` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1;
 
 INSERT INTO `isa_res_base` (`key`, `value`, `desc`)
-VALUES  ('adminUser', 'admin', '管理员账号');
+VALUES  ('adminUser', 'root', '管理员账号');
 INSERT INTO `isa_res_base` (`key`, `value`, `desc`)
-VALUES  ('adminPwd', '112358', '管理员密码');
+VALUES  ('adminPwd', '1111111', '管理员密码');
 
 -- 创建保存基本配置存储过程
 DELIMITER //

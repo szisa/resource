@@ -6,6 +6,7 @@ use com\cArray as cArray;
 require_once(ABSPATH.'/include/class_com_sql.php'); // a mysql class.
 require_once(ABSPATH.'/include/class_com_array.php'); 
 
+// 资源连接类
 class isa_res_link
 {
     private $_data;
@@ -29,6 +30,7 @@ class isa_res_link
     {
     }
     
+    // 插入此条资源连接
     function insert()
     {
         $db = new cSql();
@@ -37,6 +39,7 @@ class isa_res_link
         return $result;
     }
 
+    // 更新链接指定栏位资讯，注意要传入id
     function update($data = null)
     {
         if(null != $data) $this->set($data);
@@ -47,6 +50,7 @@ class isa_res_link
         return $result;
     }
 
+    // 根据条件查询链接列表
     function select($query)
     {
         $db = new cSql();
@@ -56,6 +60,7 @@ class isa_res_link
         return $this->toData($result);
     }
 
+    // 设置连接信息
     function set($data)
     {
         foreach ($this->_data as $k => $v) 
@@ -69,11 +74,13 @@ class isa_res_link
         return $this->_data;
     }
 
+    // 获取链接信息
     function get()
     {
         return $this->_data;
     }
 
+    // 将数据库查询值转为链接列表
     protected function toData($result)
     {
         $datas = array();
@@ -85,6 +92,7 @@ class isa_res_link
         return $datas;
     }
     
+    // 获取查询条件
     protected function getWhere($query)
     {
         $where = '`valid` = 1 ';
@@ -101,6 +109,7 @@ class isa_res_link
         return $where;
     }
 
+    // 根据查询条件获取链接列表
     protected function getData($query)
     {
         $where = $this->getWhere($query);
@@ -108,6 +117,7 @@ class isa_res_link
         return $sql;
     }
 
+    // 获取更新信息数组
     protected function getUpdate($data = null)
     {
         if(null == $data) $data = $this->_data;
@@ -116,6 +126,7 @@ class isa_res_link
         return $data->sqlsafe();
     }
 
+    // 获取插入信息数组
     protected function getInsert($data = null)
     {
         if(null == $data) $data = $this->_data;
