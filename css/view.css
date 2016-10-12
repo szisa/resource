@@ -293,7 +293,7 @@ footer a:hover {
 }
 .login_form p{
   width: 70%;
-  margin:30px auto;
+  margin: 20px auto 30px;
   line-height:40px;
   height:40px;
   text-align: right;
@@ -339,6 +339,17 @@ footer a:hover {
   width:78px;
   height:33px;
   margin:1px 1px;
+}
+.msg-error{
+  text-align:center;
+  color: #aF0700;
+  font-weight: bold;
+  width:70%;
+  max-width: 350px;
+  margin:auto;
+  border: 2px #aF0700 dashed;
+  padding:0 5px;
+  background-color:#F3c4c5;
 }
 /*download page*/
 

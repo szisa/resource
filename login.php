@@ -25,7 +25,7 @@ if(null != $user && null != $passwd)
         header ("Location:".LOCALHOST) ;    //登录成功重定向到管理页面
     }
     else
-        $error = "账号或密码错误,或者不是管理员账号";
+        $error = "账号或密码错误, 或者不是管理员账号 !";
 }
 
 $smarty->assign("desc", "login to manage resource", true);

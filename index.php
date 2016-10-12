@@ -23,6 +23,13 @@ $p = 1;
 $title = "| " . SITENAME;
 
 $query = array();
+
+if(isset($_GET["p"]) && $_GET["p"] != "")
+{
+    $p = $_GET["p"];
+    $title = ": 第" . $p . "页 " . $title;
+}
+
 if(isset($_GET["s"]) && $_GET["s"] != "")
 {
     $query["search"] = trim($_GET["s"]);
@@ -44,16 +51,11 @@ if(isset($_GET["t"]) && $_GET["t"] != "")
     $title = ",分类: " . $type . " " . $title;
 }
 
-if(isset($_GET["p"]) && $_GET["p"] != "")
-{
-    $p = $_GET["p"];
-}
-
 $PageCount = $res->page($query);
 $resList = $res->select($query, $p);
 $pageBegin = $p - 2 < 1 ? 1 : $p - 2;
 $pageEnd = $p + 5 < $PageCount ? $p + 5 : $PageCount;
-$title = trim($title, ",| ");
+$title = trim($title, ":,| ");
 
 $smarty->assign("title", $title, true);
 $smarty->assign("desc", SITEDESC, true);

@@ -49,6 +49,7 @@ if(isset($_GET["delink"]))
     die();
 }
 
+// 加载资源信息
 if(isset($_GET["id"]))
 {
     $id = $_GET["id"];
@@ -67,6 +68,7 @@ if(isset($_GET["id"]))
    }
 } 
 
+// 修改资源信息
 if(isset($_POST["id"]))
 {
     $res->set($_POST);
@@ -74,6 +76,7 @@ if(isset($_POST["id"]))
     {
         $res->update();
         $info = $res->get();
+        // 解析资源链接，格式 链接名,链接(提取码)
         $linkPost = explode("\n", cfun::replacezh($_POST["links"]));
         $id = $_POST["id"];
         foreach($linkPost as $link)
@@ -90,6 +93,7 @@ if(isset($_POST["id"]))
                 'resLink'  => $link,
                 'extCode'  => $linkext,
             );
+            // 解析一条链接，存入资料库
             $dlink->set($linkinfo);
             $dlink->insert();
         }
