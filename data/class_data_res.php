@@ -42,6 +42,7 @@ class isa_res_info
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         $result = $db->insert($this->_table, $this->getInsert());
+        $db->close();
         return $result;
     }
 
@@ -53,6 +54,7 @@ class isa_res_info
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         $result = $db->update($this->_table, $data, array("id" => $this->_data["id"], "valid" => "1"));
+        $db->close();
         return $result;
     }
 
@@ -63,6 +65,7 @@ class isa_res_info
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         $sql = $this->getData($query, $p);
         $result = $db->query($sql);
+        $db->close();
         return $this->toData($result);
     }
 
@@ -75,6 +78,7 @@ class isa_res_info
         $result = $db->query($sql);
         $row = $result->fetch_assoc();
         $page = $row["counts"] / $this->_count;
+        $db->close();
         return $page;
     }
 

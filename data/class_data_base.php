@@ -20,6 +20,7 @@ class isa_web_base
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         $result = $db->query(isa_web_base::Read(cfun::sqlsafe($key)));
+        $db->close();
         if($result->num_rows > 0)
         {
             $data = $result->fetch_assoc();
@@ -34,6 +35,7 @@ class isa_web_base
         $db = new cSql();
         $db->con(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         $result = $db->query(isa_web_base::Write(cfun::sqlsafe($key), cfun::sqlsafe($value)));
+        $db->close();
         return $result;
     }
 
