@@ -19,6 +19,7 @@ class isa_res_link
             'resId'    => '',
             'source'   => '',
             'resLink'  => '',
+            'extDesc'  => '',
             'extCode'  => '',
             'valid'    => '1',
         );

@@ -68,13 +68,30 @@ class cSql
         return $this->query($query);
     }
 
+    static function where($query)
+    {
+        $where = "1=1 ";
+        foreach ($query as $k => $v) {
+            $where .= "AND `" . $k . "` like ";
+            $where .= "'" . cSql::Format($v) . "'";
+        }
+        return $where;
+    }
+
+    static function Format($value)
+    {
+        $value = htmlspecialchars($value, ENT_QUOTES);
+        $value = addslashes($value);
+        return $value;
+    }
+
     // 关闭数据库连接
     function close()
 	{
 		$this->db->close();
 	}
-	
-    // 获取数据影响笔数
+
+    // 获取数据影响笔数	
 	function getAffect()
 	{
 		return $this->db->affected_rows;

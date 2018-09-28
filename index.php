@@ -21,6 +21,7 @@ $isMore = false;
 $isAdmin = cfun::verifysess();
 $p = 1;
 $title = "| " . SITENAME;
+$id = null;
 
 $query = array();
 
@@ -49,6 +50,12 @@ if(isset($_GET["t"]) && $_GET["t"] != "")
     $query["subject"] = $TYPELIST[$_GET["t"]];
     $type = $_GET["t"];
     $title = ",分类: " . $type . " " . $title;
+}
+
+if(isset($_GET["id"]) && $_GET["id"] != "")
+{
+    $query["id"] = $_GET["id"];
+    $id = $_GET["id"];
 }
 
 $PageCount = $res->page($query);

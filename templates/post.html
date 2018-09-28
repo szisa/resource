@@ -44,14 +44,14 @@
                         {if $link.id > 0}
                             <span class="link-name">{$link.source}:</span>
                             <span class="link-src">{$link.resLink}</span>
-                            {if $link.extCode != ""}<span class="link-extcode" title="提取码">{$link.extCode}</span>{/if}
+                            {if $link.extCode != ""}<span class="link-extip" title="{$link.extDesc}">{$link.extDesc}</span><span class="link-extcode" title="{$link.extDesc}">{$link.extCode}</span>{/if}
                         {/if}
                     </span>
                 </li>
             {/foreach}
             </ul>
             <textarea name="links" id="links" class="textarea" cols="10"></textarea>
-            <p class="form-tip">批量新增方法：名称,链接(提取码)</p>
+            <p class="form-tip">批量新增方法：名称,链接(提取码描述:提取码)</p>
         </article>
         {/if}
         <article class="form-submit">

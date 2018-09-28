@@ -85,5 +85,13 @@ class cArray
         }
         return $this->arr;
     }
+
+    // 转义 HTML
+    function format($value)
+    {
+        $value = htmlspecialchars($value, ENT_QUOTES);
+        $value = addslashes($value);
+        return $value;
+    }
 }
 ?>

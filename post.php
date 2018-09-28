@@ -76,7 +76,7 @@ if(isset($_POST["id"]))
     {
         $res->update();
         $info = $res->get();
-        // 解析资源链接，格式 链接名,链接(提取码)
+        // 解析资源链接，格式 链接名,链接(提取码描述:提取码)
         $linkPost = explode("\n", cfun::replacezh($_POST["links"]));
         $id = $_POST["id"];
         foreach($linkPost as $link)
@@ -84,13 +84,24 @@ if(isset($_POST["id"]))
             $linkinfo = explode(",", $link);
             if(count($linkinfo) <= 1) continue;
             $linkext = explode("(", trim($linkinfo[1]));
+            $extDesc = "";
             $link = trim($linkext[0]);
-            if(count($linkext) > 1) $linkext = trim(trim($linkext[1], ")"));
-            else $linkext = "";
+            if(count($linkext) > 1){
+                $linkext = trim(trim($linkext[1], ")"));
+                $exts = explode(":", $linkext);
+                if (count($exts) > 1) $linkext = trim($exts[1]);
+                else $linkext = trim($exts[0]);
+                if (count($exts) > 1) $extDesc = trim($exts[0]);
+                else $extDesc = '提取码';
+            }
+            else {
+                $linkext = "";
+            }
             $linkinfo = array(
                 'resId'    => $id,
                 'source'   => $linkinfo[0],
                 'resLink'  => $link,
+                'extDesc'  => $extDesc,
                 'extCode'  => $linkext,
             );
             // 解析一条链接，存入资料库

@@ -193,7 +193,7 @@ p.res-tags {
     padding: 0;
 }
 
-footer p {
+#footer p {
     clear:both;
     text-align:center;
     color:#c3c4c5;
@@ -269,11 +269,19 @@ footer a:hover {
 .link-src{
   word-break:break-all;
 }
+.link-extip{
+  background-color:#aF0700;
+  color: #FFF;
+  padding:0 5px;
+  border:1px solid #aF0700;
+  border-radius: 4px 0 0 4px;
+}
 .link-extcode{
   padding:0 5px;
   background-color:#ECC;
   color:#aF0700;
   border:1px dashed #aF0700;
+  border-radius: 0 4px 4px 0;
 }
 .post-info #links{
   width:100%;
@@ -293,7 +301,7 @@ footer a:hover {
 }
 .login_form p{
   width: 70%;
-  margin: 20px auto 30px;
+  margin:30px auto;
   line-height:40px;
   height:40px;
   text-align: right;
@@ -355,8 +363,16 @@ footer a:hover {
 
 .download-list {
   margin:5px;
-  padding: 0 2em;
+  padding: 0 5px 0 2em;
   list-style: lower-greek;
+}
+.download-list .link-ext-tip{
+  background-color:#aF0700;
+  color: #FFF;
+  font-size:.8em;
+  padding:2px 5px;
+  border:1px solid #aF0700;
+  border-radius: 4px 0 0 4px;
 }
 .download-list .link-ext{
   background-color:#F3c4c5;
@@ -364,7 +380,14 @@ footer a:hover {
   padding:2px 5px;
   font-size:.8em;
   border:1px dashed #aF0700;
-  border-radius:4px;
+  border-left: 0;
+  border-radius: 0 4px 4px 0;
+}
+#dlg_main #dlg_title h4 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 250px;
 }
 /*icon font*/
 @font-face {

@@ -17,6 +17,7 @@ CREATE TABLE `isa_res_link` (
   `resId`    INT  NOT NULL                 COMMENT '资源ID',
   `source`   VARCHAR(100)  NOT NULL        COMMENT '来源名称，作为网页上链接名称，如百度网盘',
   `resLink`  VARCHAR(500)  DEFAULT NULL    COMMENT '资源链接',
+  `extDesc`  VARCHAR(10)   DEFAULT NULL    COMMENT '提取码描述',
   `extCode`  VARCHAR(10)   DEFAULT NULL    COMMENT '提取码',
   `valid`    INT           DEFAULT 1       COMMENT '是否有效',
   PRIMARY KEY (`id`)
@@ -39,9 +40,9 @@ CREATE TABLE `isa_res_base` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1;
 
 INSERT INTO `isa_res_base` (`key`, `value`, `desc`)
-VALUES  ('adminUser', 'root', '管理员账号');
+VALUES  ('adminUser', 'admin', '管理员账号', 1);
 INSERT INTO `isa_res_base` (`key`, `value`, `desc`)
-VALUES  ('adminPwd', '1111111', '管理员密码');
+VALUES  ('adminPwd', '112358', '管理员密码', 1);
 
 -- 创建保存基本配置存储过程
 DELIMITER //
