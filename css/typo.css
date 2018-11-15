@@ -129,10 +129,6 @@ a {
   color: #aF0700;
 }
 
-a:hover {
-  /*text-decoration: underline;*/
-}
-
 .typo a {
   border-bottom: 1px solid #aF0700;
 }

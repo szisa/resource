@@ -10,12 +10,12 @@ define('DB_NAME', 'isa');
 /** MySQL 数据库用户名 */
 define('DB_USER', 'root');
 /** MySQL 数据库密码 */
-define('DB_PASSWORD', '12345678');
+define('DB_PASSWORD', '123456');
 /** MySQL 主机 */
 define('DB_HOST', 'localhost');
-define('SITENAME', '创软资源下载站');
+define('SITENAME', '创智资源下载站');
 define('SITEDESC', '我们不存储资源，我们只是资源的搬运工。');
-define('LOCALHOST', 'http://127.0.0.1/isa/res');
+define('LOCALHOST', 'http://127.0.0.1/res');
 define('TONGJI','');
 /** 目录的绝对路径。 */
 if ( !defined('ABSPATH') )
@@ -24,9 +24,9 @@ if ( !defined('ABSPATH') )
 $TYPELIST = array(
     "设计工具" => 1, 
     "开发环境" => 2,
+    "影视音乐" => 7,
     "系统镜像" => 3, 
     "系统工具" => 4,
     "办公软件" => 5,
     "电子书"  => 6,
 );
-  

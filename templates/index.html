@@ -2,7 +2,7 @@
         <header>
             <div class="head-logo">
                 <h1>
-                    <a href="{LOCALHOST}" class="icon-logo">资源</a><a href="http://sxisa.org" class="vendor">创软</a>
+                    <a href="{LOCALHOST}" class="icon-logo iconfont">资源</a><a href="http://sxisa.com" class="vendor">创智</a>
                     {if $isAdmin}
                     <a href="post.php" id="admin-post" target="_blank" title="新增资源">+</a>
                     {/if}
@@ -10,7 +10,7 @@
             </div>
             <div class="head-search">
                 <input type="search" name="s" id="search" value="{urldecode($search)}" class="text" placeholder="客官~想要来点啥？ᕕ ( ᐛ ) ᕗ"/>
-                <input type="submit" value="&#xe900;" class="submit-btn icon-search"/>
+                <input type="submit" value="&#xe61e;" class="submit-btn iconfont icon-search"/>
             </div>
         </header>
         <nav>
@@ -45,7 +45,10 @@
             <article class="res-item">
                 <header>
                     <h1 class="res-download" title="download {$res[item].name}">
-                        <a href="download.php?id={$res[item].id}" target="_blank" class="res-links{if !$isAdmin}  icon-download{/if}"  title="下载 {$res[item].name}">{$res[item].name}</a>
+                        <a href="?id={$res[item].id}" target="_blank"class="res-shares iconfont icon-share" title="分享地址"></a>
+                        <a href="download.php?id={$res[item].id}" target="_blank" class="res-links{if !$isAdmin} iconfont icon-download{/if}"  title="下载 {$res[item].name}">
+                            {$res[item].name}
+                        </a>
                         {if $isAdmin}
                         <a href="post.php?id={$res[item].id}" class="admin-edit" target="_blank">✐</a>
                         {/if}
