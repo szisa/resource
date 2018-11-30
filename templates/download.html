@@ -3,7 +3,7 @@
         {foreach $downloads as $link}  
             <li>  
                 <a href="{$link.resLink}{if $link.extCode != ''}#{$link.extCode}{/if}" target="_blank">{$link.source}</a>
-                {if strpos($link.resLink, 'ed2k') === 0 } <span class="link-ed2k-tip" title="请使用迅雷下载"><i class="iconfont icon-xunlei"></i> <a href="http://xunlei.com/">需使用迅雷下载</a></span> {/if}
+                {if strpos($link.resLink, 'ed2k') === 0 } <span class="link-ed2k-tip" title="请使用迅雷下载"><i class="iconfont icon-xunlei"></i> <a href="http://xunlei.com/" target="_blank">需使用迅雷下载</a></span> {/if}
                 {if $link.extCode != ''} <span class="clipboard-ext" data-clipboard-text="{$link.extCode}"> <span class="link-ext-tip" title="{$link.extDesc}">{$link.extDesc}</span><span class="link-ext" title="复制 {$link.extDesc}">{$link.extCode} <i class="iconfont icon-copy"></i></span></span> {/if}
             </li>  
         {/foreach}
